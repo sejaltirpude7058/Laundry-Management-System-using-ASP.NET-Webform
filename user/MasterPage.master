@@ -1,0 +1,122 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="user_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Laundry Management Project</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/index.css?v=44" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <div class="logo">
+                <h3>Fresh & Clean Laundry</h3>
+                <button class="toggle-menu fw-bold" id="toggleBtn" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#sidebarContainer">
+                    <i class="fa-solid fa-bars fw-bold"></i> Menu
+                </button>
+            </div>
+            <nav class="nav-links">
+
+                <div class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-bell"></i>
+                        <span id="notifCount" class="badge bg-danger">
+                            <asp:Label ID="lblNotifCount" runat="server" Text=""></asp:Label></span>
+
+                    </a>
+
+                    <ul class="dropdown-menu   dropdown-menu-end notif-dropdown" aria-labelledby="notifDropdown">
+                        <asp:Repeater ID="rptTopNotifications" runat="server">
+                            <ItemTemplate>
+                                <li class="notif-item d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <p class="mb-1"><%# Eval("Message") %></p>
+                                        <small class="text-muted"><%# Eval("CreatedDate", "{0:dd-MMM hh:mm tt}") %></small>
+                                    </div>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+                        <li>
+                            <a class="dropdown-item  text-dark text-center" href="/user/all_notifications.aspx">View All</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                            href="#"
+                            id="profileDropdown"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-circle-user me-2"></i>
+                            <asp:Label ID="lblUserFullName" runat="server" Text=""></asp:Label>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item text-dark" href="/user/user_update_profile.aspx">Update Profile</a></li>
+                            <li><a class="dropdown-item text-dark" href="/user/change_password.aspx">Change Password</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+            </nav>
+        </header>
+        <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="sidebarContainer" aria-labelledby="sidebarLabel"  runat="server" clientidmode="Static">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title text-white" id="sidebarLabel">Menu</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                <ul class="list-unstyled ">
+                    <li>
+                        <i class="fa-solid fa-house"></i>
+                        <a href="/user/user_dashboard.aspx">Dashboard</a>
+                    </li>
+                    <li id="liLaundryForm" runat="server">
+                        <i class="fa-solid fa-hand"></i>
+                        <a href="/user/laundry_request_form.aspx">New Laundry Order</a>
+                    </li>
+                    <li id="liLaundryDetails" runat="server">
+                        <i class="fa-solid fa-receipt"></i>
+                        <a href="/user/user_laundry_request_details.aspx">Order Details</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <asp:Button ID="logout" runat="server" Text="Log out" OnClick="logout_Click"
+                            CssClass="logout-btn btn btn-danger btn-sm"
+                            OnClientClick="return confirm('Are you sure you want to log out?');" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <footer>
+        <h5>All Rights Reserved <span>&copy;</span></h5>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/toggleMenu.js?v=2"></script>
+    <script src="/js/enable_edit.js"></script>
+</body>
+</html>

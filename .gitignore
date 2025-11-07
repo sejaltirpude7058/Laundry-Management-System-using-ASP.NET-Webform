@@ -1,0 +1,23 @@
+﻿# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+Web.config
+
+
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Publish outputs
+App_Data/
+PublishProfiles/
+*.FTPProfile.pubxml
+*.FTPProfile.pubxml.user
+
+

@@ -36,8 +36,6 @@ It enables users to register, place laundry requests, choose services, and track
 
 ---
 
-##  Installation and Setup
-
-### 1️⃣ Clone or Download the Repository
+### Clone or Download the Repository
 ```bash
 git clone https://github.com/yourusername/laundry-management-system.git
